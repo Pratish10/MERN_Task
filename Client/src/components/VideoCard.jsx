@@ -9,6 +9,7 @@ const VideoCard = ({ video }) => {
           <source src={video.cloudinaryUrl} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+        <h2 className={classes.cardtitle}>{video.title}</h2>
       </div>
     </li>
   );
@@ -17,6 +18,7 @@ const VideoCard = ({ video }) => {
 VideoCard.propTypes = {
   video: PropTypes.shape({
     cloudinaryUrl: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
   }).isRequired,
 };
 

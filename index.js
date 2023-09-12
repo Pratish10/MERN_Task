@@ -70,8 +70,18 @@ app.get("/", (req, res) => {
   });
 });
 
+//controllers
 app.post("/api/upload", upload.array("files", 2), async (req, res) => {
   try {
+    const { title } = req.body;
+
+    const videoExists = await Video.findOne({ title }).lean();
+    if (videoExists) {
+      return res
+        .status(401)
+        .json({ message: "Error! Video already exists", success: false });
+    }
+
     const fileNames = req.files.map((file) => {
       console.log(file.path);
       return `file '${path.join(__dirname, uploadDir, file.filename)}'`;
@@ -117,10 +127,12 @@ app.post("/api/upload", upload.array("files", 2), async (req, res) => {
               console.log("Files removed from uploads folder");
 
               const newVideo = await Video.create({
+                title: title,
                 cloudinaryUrl: videoResult.url,
               });
               if (newVideo) {
                 res.status(200).json({
+                  title: title,
                   cloudinaryUrl: videoResult.url,
                   success: true,
                 });

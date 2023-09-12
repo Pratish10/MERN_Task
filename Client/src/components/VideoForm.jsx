@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 
 const VideoForm = () => {
   const [videos, setVideos] = useState(null);
+  const [title, setTitle] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const submitHandler = async (e) => {
@@ -15,12 +17,14 @@ const VideoForm = () => {
     for (let i = 0; i < videos.length; i++) {
       formData.append("files", videos[i]);
     }
+    formData.append("title", title);
     // console.log(videos);
     // console.log(formData);
 
     try {
+      setLoading(true);
       const response = await axios.post(
-        "https://mern-tassk-backend.onrender.com/api/upload",
+        "http://localhost:8000/api/upload",
         formData,
         {
           headers: {
@@ -37,9 +41,11 @@ const VideoForm = () => {
       }
       navigate("/videoList");
       setVideos(null);
+      setLoading(false);
     } catch (error) {
       console.log("An error occurred:", error);
       setVideos(null);
+      setLoading(false);
     }
   };
 
@@ -47,9 +53,15 @@ const VideoForm = () => {
     <Card>
       <form onSubmit={submitHandler}>
         <div className={classes.input}>
+          <label htmlFor="title">Enter Video Title</label>
+          <input
+            id="title"
+            type="text"
+            name="text"
+            onChange={(e) => setTitle(e.target.value)}
+          />
           <label htmlFor="files">You can upload 2 mp4 files at once</label>
           <input
-            label="Upload your first Video"
             id="files"
             type="file"
             multiple
@@ -58,7 +70,9 @@ const VideoForm = () => {
             onChange={(e) => setVideos(e.target.files)}
           />
           <br />
-          <Button type="submit">Merge</Button>
+          <Button type="submit">
+            {loading ? "Merging and Uploading" : "Merge"}
+          </Button>
         </div>
       </form>
     </Card>

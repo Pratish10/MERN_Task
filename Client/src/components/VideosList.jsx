@@ -9,12 +9,13 @@ const VideosList = () => {
 
   useEffect(() => {
     axios
-      .get("https://mern-tassk-backend.onrender.com/api/getVideos")
+      .get("http://localhost:8000/api/getVideos")
       .then((response) => {
         setVideos(response.data.Videos);
+        console.log(response.data.Videos);
       })
       .catch((error) => {
-        console.error("Error fetching videos:", error);
+        console.log("Error fetching videos:", error);
       });
   }, []);
 
