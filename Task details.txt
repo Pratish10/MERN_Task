@@ -1,0 +1,9 @@
+Hi Pratish
+I want you to do the following today
+1. Create a web page to upload 2 videos. Input field 1 to upload video 1, input field 2 to upload video 
+2. To test, upload small videos of just 5 seconds.
+3. Integrate FFMPEG Stich to join videos. https://www.npmjs.com/package/video-stitch
+. Figure out a way to host the frontend on Vercel or Netlify
+4. Develop code to join the uploaded 2 videos and make it as 1 video
+5. Uploaded the new video to Cloudinary
+6. Web page 2: Display the new video

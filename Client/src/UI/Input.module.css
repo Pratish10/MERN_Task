@@ -1,0 +1,25 @@
+.input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+  }
+  
+  .input label {
+    font-weight: bold;
+    margin-right: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .input input {
+    width: 30%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font: inherit;
+    padding: 10px;
+    
+  }
+  

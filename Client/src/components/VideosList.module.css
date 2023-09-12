@@ -1,0 +1,30 @@
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  display: flex;
+  padding: 1rem;
+}
+
+@media (min-width: 40rem) {
+  .item {
+    width: 50%;
+  }
+}
+
+@media (min-width: 56rem) {
+  .item {
+    width: 33.3333%;
+  }
+}
+
+.card {
+  padding: 10px;
+}
+  
+  
