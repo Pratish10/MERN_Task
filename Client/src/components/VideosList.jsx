@@ -12,9 +12,12 @@ const VideosList = () => {
     axios
       .get(`${backendUrl}/api/get-videos`)
       .then((response) => {
-        setVideos(response.data.Videos);
-
-        // console.log(response.data.Videos);
+        const sortedVideos = response.data.Videos.sort((a, b) => {
+          const dateA = new Date(a.createdAt);
+          const dateB = new Date(b.createdAt);
+          return dateB - dateA;
+        });
+        setVideos(sortedVideos);
       })
       .catch((error) => {
         console.log("Error fetching videos:", error);
