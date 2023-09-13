@@ -4,7 +4,7 @@ const ffmpeg = require("fluent-ffmpeg");
 const Video = require("../Models/videoSchema");
 const cloudinary = require("../utils/cloudinary");
 
-const uploadDir = "uploads";
+const uploadDir = "../uploads";
 
 exports.uploadVideo = async (req, res) => {
   try {

@@ -9,9 +9,10 @@ const VideosList = () => {
 
   useEffect(() => {
     axios
-      .get("https://mern-tassk-backend.onrender.com/api/getVideos")
+      .get("http://localhost:8000/api/get-videos")
       .then((response) => {
         setVideos(response.data.Videos);
+
         // console.log(response.data.Videos);
       })
       .catch((error) => {

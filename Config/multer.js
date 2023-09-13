@@ -15,6 +15,14 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage: storage });
+const videoFilter = function (req, file, cb) {
+  if (!file.originalname.match(/\.(mp4)$/)) {
+    req.fileError = "Only mp4 files are allowed";
+    return cb(new Error("Only mp4 files are allowed"), false);
+  }
+  cb(null, true);
+};
+
+const upload = multer({ storage: storage, fileFilter: videoFilter });
 
 module.exports = upload;
