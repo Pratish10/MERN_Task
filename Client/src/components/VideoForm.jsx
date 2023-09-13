@@ -16,13 +16,9 @@ const VideoForm = () => {
   };
 
   const handleFileInputChange = (e, index) => {
-    // const selectedFile = e.target.files[0];
-    // console.log("Selected file:", selectedFile);
-
     const newVideos = [...videos];
     newVideos[index] = e.target.files[0];
 
-    // console.log("New videos state:", newVideos);
     setVideos(newVideos);
   };
 
@@ -36,12 +32,8 @@ const VideoForm = () => {
     e.preventDefault();
     const formData = new FormData();
     videos.forEach((video) => {
-      // console.log(video);
       formData.append(`files`, video);
-      // console.log(formData);
     });
-    // console.log(videos);
-    // console.log(formData);
 
     try {
       setLoading(true);
@@ -53,7 +45,6 @@ const VideoForm = () => {
 
       if (response.status === 200) {
         alert("Video is merged and uploaded to cloudinary");
-        // console.log("Videos uploaded successfully to cloudinary");
       } else {
         console.log("Failed to upload videos");
       }
@@ -75,7 +66,7 @@ const VideoForm = () => {
           style={{
             border: "1px solid grey",
             height: "60vh",
-            overflowY: "scroll",
+            // overflowY: "scroll",
           }}
         >
           <div className={classes.input}>
