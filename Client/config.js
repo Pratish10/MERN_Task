@@ -1,3 +1,3 @@
-const backendUrl = "http://localhost:8000";
+const backendUrl = "https://mern-tassk-backend.onrender.com";
 
 export default backendUrl;
