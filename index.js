@@ -4,22 +4,24 @@ const morgan = require("morgan");
 require("dotenv").config();
 const connectDB = require("./Config/db");
 const apiRoutes = require("./Routes/videoRoutes");
+const fs = require("fs");
+const ffmpeg = require("fluent-ffmpeg");
 
 const PORT = process.env.PORT || 8000;
 
 const app = express();
+
+const uploadDir = "uploads";
+
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
+}
 
 //Middlewares
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-const uploadDir = "../uploads";
-
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir);
-}
 
 connectDB();
 
