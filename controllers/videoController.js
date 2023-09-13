@@ -6,6 +6,10 @@ const cloudinary = require("../utils/cloudinary");
 
 const uploadDir = "../uploads";
 
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
+}
+
 exports.uploadVideo = async (req, res) => {
   try {
     const fileNames = req.files.map((file) => {
