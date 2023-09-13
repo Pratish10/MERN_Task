@@ -3,7 +3,7 @@ import Button from "../UI/Button";
 import Card from "../UI/Card";
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import backendUrl from "../../config";
 
 const VideoForm = () => {
@@ -11,15 +11,23 @@ const VideoForm = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const allowedFormats = ".mp4";
+
   const handleAddInput = () => {
     setVideos([...videos, null]);
   };
 
   const handleFileInputChange = (e, index) => {
-    const newVideos = [...videos];
-    newVideos[index] = e.target.files[0];
+    const selectedFile = e.target.files[0];
+    const fileExtension = selectedFile.name.split(".").pop().toLowerCase();
 
-    setVideos(newVideos);
+    if (allowedFormats.includes(`.${fileExtension}`)) {
+      const newVideos = [...videos];
+      newVideos[index] = selectedFile;
+      setVideos(newVideos);
+    } else {
+      alert("Unsupported file format. Please select a valid video format.");
+    }
   };
 
   const handleRemoveInput = (index) => {
@@ -53,7 +61,7 @@ const VideoForm = () => {
       setLoading(false);
     } catch (error) {
       console.log("An error occurred:", error);
-      alert("An error occurred");
+      alert(error.message);
       setVideos([]);
       setLoading(false);
     }
@@ -66,7 +74,7 @@ const VideoForm = () => {
           style={{
             border: "1px solid grey",
             height: "60vh",
-            // overflowY: "scroll",
+            overflowY: "scroll",
           }}
         >
           <div className={classes.input}>
@@ -75,7 +83,7 @@ const VideoForm = () => {
               <div key={index} className={classes.input}>
                 <input
                   type="file"
-                  accept=".mpg, .avi, .mp4"
+                  accept=".mp4"
                   onChange={(e) => handleFileInputChange(e, index)}
                   // value={null}
                 />
@@ -95,6 +103,9 @@ const VideoForm = () => {
           <Button type="submit">
             {loading ? "Merging and Uploading" : "Merge"}
           </Button>
+          <Link to="/videoList">
+            <Button>Videos List</Button>
+          </Link>
         </div>
       </form>
     </Card>

@@ -31,8 +31,12 @@ exports.uploadVideo = async (req, res) => {
     });
 
     ffmpegCommand.on("error", function (err) {
-      console.error("Error:", err);
+      console.log("Error:", err);
       res.status(500).json({ message: "An error occurred", success: false });
+    });
+
+    ffmpegCommand.on("start", function (commandLine) {
+      console.log("Spawned FFmpeg with command: " + commandLine);
     });
 
     ffmpegCommand.on("end", async function () {
