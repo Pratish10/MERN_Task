@@ -1,9 +1,12 @@
-.input {
+
+  .input {
     display: flex;
     flex-direction: column;
+    padding:5px;
+    display: flex;
     justify-content: center;
     align-items: center;
-    height: 70vh;
+    
   }
   
   .input label {
@@ -14,12 +17,30 @@
     align-items: center;
   }
   
-  .input input {
-    width: 30%;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font: inherit;
-    padding: 10px;
-    
+  .input input[type="file"] {
+    width: 100%;
+    margin-bottom: 5px;
   }
+  
+  .input button {
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    width: 25%;
+   
+  }
+  
+  .input button:hover {
+    background-color: #cc0000;
+  }
+
+  
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
   

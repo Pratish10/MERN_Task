@@ -7,3 +7,9 @@ I want you to do the following today
 4. Develop code to join the uploaded 2 videos and make it as 1 video
 5. Uploaded the new video to Cloudinary
 6. Web page 2: Display the new video
+
+Please make the following changes
+1. Remove Title
+2. Auto generate a Unique ID and display the same in the next page
+3. Display an Add button to add more videos
+4. Integrate the FFMPEG server
