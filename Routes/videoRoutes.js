@@ -1,13 +1,12 @@
 const express = require("express");
-const multer = require("multer");
-const { upload, getVideos } = require("../Controllers/videoControllers");
+const videoController = require("../controllers/videoController");
 
 const router = express.Router();
-const storage = multer.memoryStorage();
-const upload = multer({ storage });
 
-router.post("/upload", upload.array("files", 50), upload);
+const upload = require("../Config/multer");
 
-router.get("/get-videos", getVideos);
+router.post("/upload", upload.array("files", 50), videoController.uploadVideo);
+
+router.get("/get-videos", videoController.getVideos);
 
 module.exports = router;
