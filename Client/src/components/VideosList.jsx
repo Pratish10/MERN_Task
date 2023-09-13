@@ -3,13 +3,14 @@ import axios from "axios";
 import VideoCard from "./VideoCard";
 import Card from "../UI/Card";
 import classes from "./VideosList.module.css";
+import backendUrl from "../../config";
 
 const VideosList = () => {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/get-videos")
+      .get(`${backendUrl}/api/get-videos`)
       .then((response) => {
         setVideos(response.data.Videos);
 
